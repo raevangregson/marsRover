@@ -1,6 +1,26 @@
-*{
-    
+.mainContent {
         height: 100vh;
         min-height: min-content;
         background-image: linear-gradient(rgb(173, 208, 255), blue);
 }
+
+.grid-container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 600px;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    background-color: #2196F3;
+    padding: 15px;
+  }
+  
+.grid-item {
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8)!important;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 25px;
+    font-size: 30px;
+    text-align: center;
+  }
