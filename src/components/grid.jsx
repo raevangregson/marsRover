@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Rover from '../../public/moon-rover.png';
+import Stone from '../../public/stone.png';
 
 class Grid extends Component {
     constructor(props) {
@@ -16,7 +18,7 @@ class Grid extends Component {
         let roverStart = Math.floor(Math.random() * 36) + 1
         let rocks = this.randomizeRocks(roverStart)
         let grid = this.state.grid
-        if (grid == null) grid = this.createGrid()
+        if (grid == null) grid = this.createGrid(rocks,roverStart)
         this.setState({
             roverStart,
             rocks,
@@ -29,26 +31,43 @@ class Grid extends Component {
         let rocks = []
         for (var x = 1; rocks.length < 5; x++) {
             let randomTile = Math.floor(Math.random() * 36) + 1
-            if (!rocks.includes(randomTile)&& randomTile!=roverStart){
+            if (!rocks.includes(randomTile) && randomTile != roverStart) {
                 rocks.push(randomTile)
             }
         }
         return rocks
     }
 
-    createGrid() {
+    createGrid(rocks,roverStart) {
         let gridItems = []
         for (var x = 1; x <= 36; x++) {
-            gridItems.push(<div key={x} className="grid-item"></div>)
+            if(rocks.includes(x)){
+                gridItems.push(<div key={x} id={x} className="grid-item">{<img src={Stone} />}</div>)
+            }
+            else if(x==roverStart){
+                gridItems.push(<div key={x} id={x} className="grid-item">{<img src={Rover} />}</div>)
+            }
+            else{
+                gridItems.push(<div key={x} id={x} className="grid-item"></div>)
+            }
+            
         }
         return <div className='grid-container'>{gridItems}</div>
     }
 
     render() {
-        console.log(this.state.rocks,this.state.roverStart)
         return (
-            <div>
-               {this.state.grid}
+            <div className={'flex'}>
+                {this.state.grid}
+                <div>
+                    <p>Enter up too 5 places for the rover to move using the key below</p>
+                    <p>R=Right L=Left F=Forward B=Backward </p>
+                    <label>
+                       Move Rover
+    <input type="text" name="name" />
+                    </label>
+                    <input type="submit" value="Submit" />
+                </div>
             </div>
         );
     }
