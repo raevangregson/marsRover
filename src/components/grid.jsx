@@ -13,21 +13,23 @@ class Grid extends Component {
     }
 
     componentWillMount() {
-        let rocks = this.randomizeRocks()
+        let roverStart = Math.floor(Math.random() * 36) + 1
+        let rocks = this.randomizeRocks(roverStart)
         let grid = this.state.grid
         if (grid == null) grid = this.createGrid()
         this.setState({
+            roverStart,
             rocks,
             grid
         })
     }
 
     //this function randomizes rocks that act as an obstacle
-    randomizeRocks() {
+    randomizeRocks(roverStart) {
         let rocks = []
         for (var x = 1; rocks.length < 5; x++) {
             let randomTile = Math.floor(Math.random() * 36) + 1
-            if (!rocks.includes(randomTile)) {
+            if (!rocks.includes(randomTile)&& randomTile!=roverStart){
                 rocks.push(randomTile)
             }
         }
@@ -43,7 +45,7 @@ class Grid extends Component {
     }
 
     render() {
-        console.log(this.state.grid)
+        console.log(this.state.rocks,this.state.roverStart)
         return (
             <div>
                {this.state.grid}
