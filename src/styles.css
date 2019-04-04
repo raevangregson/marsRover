@@ -1,0 +1,6 @@
+*{
+    
+        height: 100vh;
+        min-height: min-content;
+        background-image: linear-gradient(rgb(173, 208, 255), blue);
+}
