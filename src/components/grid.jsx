@@ -8,19 +8,19 @@ class Grid extends Component {
         this.state = {
             grid: null,
             rocks: [],
-            roverStart: null,
+            rover: null,
         }
         this.createGrid = this.createGrid.bind(this)
         this.randomizeRocks = this.randomizeRocks.bind(this)
     }
 
     componentWillMount() {
-        let roverStart = Math.floor(Math.random() * 36) + 1
-        let rocks = this.randomizeRocks(roverStart)
+        let rover = Math.floor(Math.random() * 36) + 1
+        let rocks = this.randomizeRocks(rover)
         let grid = this.state.grid
-        if (grid == null) grid = this.createGrid(rocks,roverStart)
+        if (grid == null) grid = this.createGrid(rocks,rover)
         this.setState({
-            roverStart,
+            rover,
             rocks,
             grid
         })
